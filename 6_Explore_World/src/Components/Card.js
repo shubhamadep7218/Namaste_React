@@ -4,7 +4,7 @@ const Card = (props) => {
     const { restaurant } = props
     const { name, cloudinaryImageId, cuisines, avgRating, sla, aggregatedDiscountInfoV3} = restaurant?.info
     const {slaString } = sla
-    const { header, subHeader } = aggregatedDiscountInfoV3
+    // const { header, subHeader } = aggregatedDiscountInfoV3
 
     return(
         <div className='card'>
@@ -15,7 +15,7 @@ const Card = (props) => {
                 <h4>{slaString}</h4>
             </div>
             <h4>{cuisines.join(', ')}</h4>
-            <h4 className='img-head'><span>{header} </span><span>{subHeader}</span></h4>
+            {/* {aggregatedDiscountInfoV3 && <h4 className='img-head'><span>{header} </span><span>{subHeader}</span></h4>} */}
         </div>
     )
 }
