@@ -1,4 +1,5 @@
 import { LOGO_URL } from "../utils/constants"
+import {useState} from "react"
 
 const Logo = () => {
     return (
@@ -19,13 +20,19 @@ const Search = () => {
 }
 
 const Navigation = () => {
+    const [btnName, setBtnName] = useState('login')
+    const handleClick = () => {
+        setBtnName(btnName === 'login' ? 'logout' : 'login')
+    }
     return(
         <div className='navigation'>
             <ul>
                 <li>Home</li>
                 <li>About Us</li>
                 <li>Contact Us</li>
-                <li>Login</li>
+                <li>
+                    <button onClick={handleClick}>{btnName}</button>
+                </li>
             </ul>
         </div>
     )
