@@ -3,7 +3,7 @@ import data from "../../data.json";
 import Card from "./Card";
 import Shimmer from "./Shimmer";
 const URL =
-  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.61610&lng=73.72860&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5912716&lng=73.73890899999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
 const Body = () => {
   const [restList, setRestList] = useState([]);
@@ -40,7 +40,7 @@ const Body = () => {
 
   console.log('Body Rendered');
 
-  return restList.length === 0 ? (
+  return restList?.length === 0 ? (
     <Shimmer />
   ) : (
     <div>
@@ -64,7 +64,7 @@ const Body = () => {
         </div>
       </div>
       <div className="res-container">
-        {filtRestList.length === 0 && <h1>No filter results </h1> }
+        {filtRestList?.length === 0 && <h1>No filter results </h1> }
         {filtRestList?.map((restaurant) => {
           return <Card key={restaurant?.info?.id} restaurant={restaurant} />;
         })}
