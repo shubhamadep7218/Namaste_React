@@ -8,6 +8,7 @@ const Card = (props) => {
         restaurant?.info;
     const { slaString } = sla;
     // const { header, subHeader } = aggregatedDiscountInfoV3
+    // aggregatedDiscountInfoV3
 
     return (
         <Link to={`/restaurant/${id}`}>
@@ -15,7 +16,7 @@ const Card = (props) => {
                 <img
                     src={CDN_URL + cloudinaryImageId}
                     alt="rest img"
-                    className="object-cover w-full h-40 rounded-xl"
+                    className="object-cover w-full h-40 rounded-xl relative"
                 />
                 <div>
                     <p className="font-bold text-base">{name}</p>
@@ -32,5 +33,19 @@ const Card = (props) => {
         </Link>
     );
 };
+
+
+export const withOfferCard = (Card) => {
+    return (props) => {
+        const { restaurant } = props; 
+        const label = restaurant?.info?.aggregatedDiscountInfoV3?.header + " " + restaurant?.info?.aggregatedDiscountInfoV3?.subHeader
+        return(
+            <div>
+                <p className="font-extrabold text-white absolute z-10 mt-32 ml-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2">{label}</p>
+                <Card {...props}/>
+            </div>
+        )
+    }
+}
 
 export default Card;

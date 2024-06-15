@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card, { withOfferCard } from "./Card";
 import Shimmer from "./Shimmer";
 import { useOnlineStatus } from "../utils/useOnlineStatus";
 import Filters from "./Filters";
@@ -8,6 +8,8 @@ const Body = () => {
     const { restList, filtRestList, setFiltRestList } = useRestaurants();
     const isOnline = useOnlineStatus();
     const filterProps = { restList, setFiltRestList };
+
+    const WithOfferCard = withOfferCard(Card)
 
     if (!isOnline) {
         return (
@@ -27,12 +29,21 @@ const Body = () => {
             <div className="grid grid-cols-5 gap-8">
                 {filtRestList?.length === 0 && <h1>No filter results </h1>}
                 {filtRestList?.map((restaurant) => {
-                    return (
-                        <Card
-                            key={restaurant?.info?.id}
-                            restaurant={restaurant}
-                        />
-                    );
+                    if(restaurant?.info?.aggregatedDiscountInfoV3?.header){
+                        return (
+                            <WithOfferCard
+                                key={restaurant?.info?.id}
+                                restaurant={restaurant}
+                            />
+                        );
+                    }else{
+                        return (
+                            <Card
+                                key={restaurant?.info?.id}
+                                restaurant={restaurant}
+                            />
+                        );
+                    }
                 })}
             </div>
         </div>
