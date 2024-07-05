@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useRestaurantMenu } from "../utils/useRestaurantMenu";
+import RestFoodCategory from "./RestFoodCategory";
 
 const Card = (props) => {
     const { name, price, description } = props?.item?.card?.info;
@@ -38,6 +39,11 @@ const RestMenu = () => {
         restData?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
             ?.card;
 
+    const list = restData?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    const filterCategory = list.filter((submenu) => {
+      return submenu?.card?.card?.["@type"]?.includes(".ItemCategory");
+    });
+
     return (
         <div className="flex flex-col mx-auto w-8/12 gap-8">
             <div className="border p-6 rounded-xl shadow-xl">
@@ -56,25 +62,14 @@ const RestMenu = () => {
             </div>
 
             <div>
-                <div className="top-picks">
-                    <h3>{topPicks?.title}</h3>
-                    {topPicks?.carousel?.map((topPick) => {
-                        <div>
-                            <p>{topPick?.title}</p>
-                            <img src={`${topPick?.dish?.info?.imageId}`} />
-                            <p>{topPick?.dish?.info?.price / 100}</p>
-                        </div>;
-                    })}
-                </div>
-
                 <div className="flex flex-col gap-4">
-                    {itemCards?.map((item, index) => {
-                        return <Card key={index} item={item} />;
+                    {filterCategory?.map((item, index) => {
+                        return <RestFoodCategory item={item} key={index}/>;
                     })}
                 </div>
             </div>
         </div>
-    );
+    )
 };
 
 export default RestMenu;
