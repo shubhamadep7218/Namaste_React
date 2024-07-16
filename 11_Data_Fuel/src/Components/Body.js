@@ -1,5 +1,5 @@
 import Card, { withOfferCard } from "./Card";
-import Shimmer from "./Shimmer";
+import CardShimmer from "./CardShimmer";
 import { useOnlineStatus } from "../utils/useOnlineStatus";
 import Filters from "./Filters";
 import { useRestaurants } from "../utils/useRestaurants";
@@ -20,7 +20,7 @@ const Body = () => {
     }
 
     if(restList?.length === 0){
-      return <Shimmer />
+      return <CardShimmer />
     }
 
     return  (

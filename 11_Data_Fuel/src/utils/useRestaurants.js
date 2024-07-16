@@ -4,7 +4,6 @@ import { RESTAURANT_URL } from "./constants";
 export const useRestaurants = () => {
     const [restList, setRestList] = useState([]);
     const [filtRestList, setFiltRestList] = useState([]);
-    console.log(restList);
     const fetchData = async () => {
         try {
             const data = await fetch(RESTAURANT_URL);

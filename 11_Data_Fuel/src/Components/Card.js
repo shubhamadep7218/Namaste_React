@@ -6,8 +6,6 @@ const Card = (props) => {
     const { id, name, cloudinaryImageId, cuisines, avgRating, sla, areaName } =
         restaurant?.info;
     const { slaString } = sla;
-    // const { header, subHeader } = aggregatedDiscountInfoV3
-    // aggregatedDiscountInfoV3
 
     return (
         <Link to={`/restaurant/${id}`}>
@@ -23,10 +21,10 @@ const Card = (props) => {
                         <p>✪ {avgRating}</p>
                         <p>{slaString}</p>
                     </div>
-                    <p className="font-thin text-sm truncate">
+                    <p className=" text-slate-500 text-sm truncate">
                         {cuisines.join(", ")}
                     </p>
-                    <p className="font-thin text-sm truncate">{areaName}</p>
+                    <p className=" text-sm truncate">{areaName}</p>
                 </div>
             </div>
         </Link>
